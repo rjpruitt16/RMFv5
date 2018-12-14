@@ -1,0 +1,11 @@
+package com.GMorgan.RateMyFriendv5.Repository;
+
+import com.GMorgan.RateMyFriendv5.Entitiy.User;
+import org.springframework.data.repository.CrudRepository;
+
+import java.util.List;
+import java.util.UUID;
+
+public interface UserRepository extends CrudRepository<User, UUID> {
+    List<User> findByUsername(String username);
+}
