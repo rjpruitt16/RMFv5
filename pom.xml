@@ -18,6 +18,7 @@
 		<java.version>1.8</java.version>
         <h2.version>1.4.197</h2.version>
         <boot.version>2.1.1.RELEASE</boot.version>
+		<mockito.version>1.9.5</mockito.version>
 	</properties>
 
 	<dependencies>
@@ -53,6 +54,14 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>${mockito.version}</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 
 	<build>
