@@ -9,14 +9,27 @@ import java.util.UUID;
 @Entity
 public class User {
 
-    enum roles {ADMIN, USER};
-
     private final java.util.UUID uuid = UUID.randomUUID();
 
     private String username;
 
     private String email;
-    // TODO implement password hashing algorithms
+
     private String password;
+
+    private Role role;
+
+    public boolean isPassword(String password) {
+        return this.password.equals(hash(password));
+    }
+
+    public void setPassword(String passowrd) {
+        this.password = hash(passowrd);
+    }
+    // TODO implement password hashing algorithms
+    public String hash(String password) {
+        return password;
+    }
+
 }
 
