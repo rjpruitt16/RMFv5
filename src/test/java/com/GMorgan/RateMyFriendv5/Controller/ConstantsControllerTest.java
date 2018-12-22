@@ -18,14 +18,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@WebMvcTest(ConstantsController.class)
 @AutoConfigureMockMvc
 public class ConstantsControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
     @Value("${controller.constant.ping.message}")
-    public String pingMessage;
+    private String pingMessage;
 
     @Test
     public void pingTest() throws Exception {
