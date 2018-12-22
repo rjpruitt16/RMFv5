@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ConstantsController {
 
     @Value("${controller.constant.ping.message}")
-    public String pingMessage;
+    private String pingMessage;
 
     @RequestMapping(Mappings.PING)
     public String ping() {
