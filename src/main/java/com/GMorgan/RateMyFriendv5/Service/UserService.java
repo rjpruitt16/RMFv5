@@ -3,16 +3,21 @@ package com.GMorgan.RateMyFriendv5.Service;
 import com.GMorgan.RateMyFriendv5.Entitiy.Role;
 import com.GMorgan.RateMyFriendv5.Entitiy.User;
 import com.GMorgan.RateMyFriendv5.Repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
+@Service
 public class UserService {
     private UserRepository repository;
 
-    public boolean authenticate(String username, String password) {
+    public boolean login(String username, String password) {
         List<User> userList = repository.findByUsername(username);
-        return userList.get(0).isPassword(password);
-
+        boolean isSuccessful = userList.get(0).isPassword(password);
+        log.info("Username: {} isSucessful: {}", username, isSuccessful);
+        return isSuccessful;
     }
 
     public boolean signUp(String email, String username, String password) {
@@ -23,16 +28,15 @@ public class UserService {
         user.setPassword(password);
         user.setRole(Role.USER);
         repository.save(user);
+        log.info("User email: {} username: {}", email, username);
         return true;
     }
 
-    public boolean userEmailExists(String email) {
+    private boolean userEmailExists(String email) {
         return !repository.findByEmail(email).isEmpty();
     }
 
-    public boolean userUsernameExists(String username) {
+    private boolean userUsernameExists(String username) {
         return !repository.findByUsername(username).isEmpty();
     }
-
-
 }

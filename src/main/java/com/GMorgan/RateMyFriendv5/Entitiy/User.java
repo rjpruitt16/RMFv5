@@ -3,12 +3,13 @@ package com.GMorgan.RateMyFriendv5.Entitiy;
 import lombok.Data;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.util.UUID;
 
 @Data
 @Entity
 public class User {
-
+    @Id
     private final java.util.UUID uuid = UUID.randomUUID();
 
     private String username;
@@ -27,7 +28,7 @@ public class User {
         this.password = hash(passowrd);
     }
     // TODO implement password hashing algorithms
-    public String hash(String password) {
+    private String hash(String password) {
         return password;
     }
 
