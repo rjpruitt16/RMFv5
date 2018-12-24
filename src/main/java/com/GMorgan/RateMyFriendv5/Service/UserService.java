@@ -18,6 +18,7 @@ public class UserService {
     private UserRepository repository;
 
     public boolean login(String username, String password) {
+        // TODO make custom exceptions and return a Response instead of boolean
         List<User> userList = repository.findByUsername(username);
         boolean isSuccessful = userList.get(0).isPassword(password);
         log.info("Username: {} isSucessful: {}", username, isSuccessful);
@@ -25,6 +26,7 @@ public class UserService {
     }
 
     public boolean signUp(String email, String username, String password) {
+        // TODO make custom exceptions and return a Response instead of boolean
         if (userEmailExists(email) || userUsernameExists(username)) return false;
         User user = new User();
         user.setEmail(email);
