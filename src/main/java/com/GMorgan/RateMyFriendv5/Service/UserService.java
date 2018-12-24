@@ -4,13 +4,17 @@ import com.GMorgan.RateMyFriendv5.Entitiy.Role;
 import com.GMorgan.RateMyFriendv5.Entitiy.User;
 import com.GMorgan.RateMyFriendv5.Repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
+@Configurable
 @Service
 public class UserService {
+    @Autowired
     private UserRepository repository;
 
     public boolean login(String username, String password) {
