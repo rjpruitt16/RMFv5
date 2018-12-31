@@ -9,11 +9,13 @@ import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Configurable
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository repository;
 
@@ -38,6 +40,35 @@ public class UserService {
         return true;
     }
 
+    public void logAllUsers() {
+        log.info("log All Users called");
+        repository.findAll().forEach(user ->
+                log.info(user.toString())
+        );
+    }
+
+    public void deleteAll() {
+        repository.deleteAll();
+    }
+
+    public boolean connectUsers(Long one, Long two) {
+        Optional<User> optionalUser = repository.findById(one);
+        Optional<User> optionalUserB = repository.findById(two);
+        User user;
+        User userB;
+        if (optionalUser.isPresent() && optionalUserB.isPresent()) {
+            user = optionalUser.get();
+            userB = optionalUser.get();
+        } else {
+            return false;
+        }
+        user.follow(userB);
+        log.info("Updated user: " + user.toString());
+        repository.save(user);
+        return true;
+    }
+
+
     private boolean userEmailExists(String email) {
         return !repository.findByEmail(email).isEmpty();
     }
@@ -45,4 +76,6 @@ public class UserService {
     private boolean userUsernameExists(String username) {
         return !repository.findByUsername(username).isEmpty();
     }
+
+
 }

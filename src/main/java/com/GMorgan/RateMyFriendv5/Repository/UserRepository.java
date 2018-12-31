@@ -4,9 +4,8 @@ import com.GMorgan.RateMyFriendv5.Entitiy.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
-import java.util.UUID;
 
-public interface UserRepository extends CrudRepository<User, UUID> {
+public interface UserRepository extends CrudRepository<User, Long> {
     List<User> findByUsername(String username);
     List<User> findByEmail(String email);
 }

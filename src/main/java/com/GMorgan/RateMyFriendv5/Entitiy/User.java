@@ -2,35 +2,38 @@ package com.GMorgan.RateMyFriendv5.Entitiy;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.util.UUID;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
-public class User {
+public class User implements java.io.Serializable {
     @Id
-    private final java.util.UUID uuid = UUID.randomUUID();
-
-    private String username;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String email;
-
     private String password;
-
+    private String username;
     private Role role;
+    @ManyToMany
+    private List<User> usersFollowing = new ArrayList<>();
+
+    private String hash(String password) {
+        return password;
+    }
 
     public boolean isPassword(String password) {
         return this.password.equals(hash(password));
     }
 
-    public void setPassword(String passowrd) {
-        this.password = hash(passowrd);
-    }
-    // TODO implement password hashing algorithms
-    private String hash(String password) {
-        return password;
+    public void setPassword(String password) {
+        this.password = hash(password);
     }
 
+    public boolean follow(User user) {
+        usersFollowing.add(user);
+        return true;
+    }
 }
 

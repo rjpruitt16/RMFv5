@@ -27,6 +27,7 @@ class AuthenticationController {
 
     @RequestMapping(Mappings.LOGIN)
     @ResponseBody
+        // Example url: http://localhost:8080/login?userId=reggie&password=password123
     Response login(@RequestParam("userId") String usernameOrEmail,
                    @RequestParam("password") String password) {
         boolean isSuccessful = service.login(usernameOrEmail, password);
@@ -38,6 +39,8 @@ class AuthenticationController {
 
     @RequestMapping(Mappings.SIGNUP)
     @ResponseBody
+        // Example url: http://localhost:8080/signup?email=rahmi@google.com&userId=rahmi&password=password123
+        // Example url: http://localhost:8080/signup?email=reggie@google.com&userId=reggie&password=password123
     Response signUp(@RequestParam("email") String email,
                     @RequestParam("userId") String username,
                     @RequestParam("password") String password) {
@@ -46,5 +49,22 @@ class AuthenticationController {
             return new Response(true, signUpSuccess);
         }
         return new Response(false, signUpfail);
+    }
+
+    @RequestMapping(Mappings.CONNECT)
+    @ResponseBody
+        // Example url: http://localhost:8080/connect?sourceID=1&targetID=2
+    Response connect(@RequestParam("sourceID") String sourceUUID,
+                     @RequestParam("targetID") String targetUUID) {
+        service.connectUsers(Long.parseLong(sourceUUID), Long.parseLong(targetUUID));
+        return new Response(true, "done");
+    }
+
+    @RequestMapping(Mappings.USERS)
+    @ResponseBody
+        // Example url: http://localhost:8080/users
+    Response logAllUsers() {
+        service.logAllUsers();
+        return new Response(true, "done");
     }
 }
