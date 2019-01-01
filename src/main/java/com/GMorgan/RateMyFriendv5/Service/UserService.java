@@ -51,21 +51,23 @@ public class UserService {
         repository.deleteAll();
     }
 
-    public boolean connectUsers(Long one, Long two) {
+    // Connects the user in the first parameter to the user in the
+    // second parameter by using there ids.
+    public Optional<User> connectUsers(Long one, Long two) {
         Optional<User> optionalUser = repository.findById(one);
         Optional<User> optionalUserB = repository.findById(two);
         User user;
         User userB;
         if (optionalUser.isPresent() && optionalUserB.isPresent()) {
             user = optionalUser.get();
-            userB = optionalUser.get();
+            userB = optionalUserB.get();
         } else {
-            return false;
+            return Optional.empty();
         }
         user.follow(userB);
         log.info("Updated user: " + user.toString());
         repository.save(user);
-        return true;
+        return Optional.of(user);
     }
 
 

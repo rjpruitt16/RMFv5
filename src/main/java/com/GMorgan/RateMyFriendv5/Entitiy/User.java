@@ -1,12 +1,16 @@
 package com.GMorgan.RateMyFriendv5.Entitiy;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class User implements java.io.Serializable {
     @Id
@@ -16,6 +20,7 @@ public class User implements java.io.Serializable {
     private String password;
     private String username;
     private Role role;
+
     @ManyToMany
     private List<User> usersFollowing = new ArrayList<>();
 

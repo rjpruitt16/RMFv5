@@ -17,7 +17,7 @@ public class RateMyFriendv5ApplicationTests {
 	private ConstantsController controller;
 
 	@Test
-	public void contextLoads() {
+	public void contextLoadsTest() {
 		assertThat(controller).isNotNull();
 	}
 
