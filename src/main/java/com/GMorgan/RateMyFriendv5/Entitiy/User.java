@@ -17,8 +17,8 @@ public class User implements java.io.Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String email;
-    private String password;
     private String username;
+    private String password;
     private Role role;
 
     @ManyToMany
