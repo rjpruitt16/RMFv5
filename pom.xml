@@ -19,6 +19,10 @@
         <h2.version>1.4.197</h2.version>
         <boot.version>2.1.1.RELEASE</boot.version>
 		<mockito.version>1.9.5</mockito.version>
+		<jetbrains.version>16.0.2</jetbrains.version>
+		<swagger.version>2.9.2</swagger.version>
+		<swaggerui.version>2.9.2</swaggerui.version>
+
 	</properties>
 
 	<dependencies>
@@ -64,10 +68,21 @@
 		<dependency>
 			<groupId>org.jetbrains</groupId>
 			<artifactId>annotations</artifactId>
-			<version>16.0.2</version>
+			<version>${jetbrains.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swaggerui.version}</version>
+		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
