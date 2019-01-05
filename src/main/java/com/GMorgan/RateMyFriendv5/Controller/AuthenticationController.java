@@ -6,10 +6,7 @@ import com.GMorgan.RateMyFriendv5.Utils.Mappings;
 import com.GMorgan.RateMyFriendv5.Utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -28,7 +25,7 @@ class AuthenticationController {
     @Value("${controller.authentation.signup.fail}")
     private String signUpfail;
 
-    @RequestMapping(Mappings.LOGIN)
+    @GetMapping(Mappings.LOGIN)
     @ResponseBody
         // Example url: http://localhost:8080/login?userId=reggie&password=password123
     Response login(@RequestParam("userId") String usernameOrEmail,
@@ -40,7 +37,7 @@ class AuthenticationController {
         return new Response(false, loginFail);
     }
 
-    @RequestMapping(Mappings.SIGNUP)
+    @PostMapping(Mappings.SIGNUP)
     @ResponseBody
         // Example url: http://localhost:8080/signup?email=rahmi@google.com&userId=rahmi&password=password123
         // Example url: http://localhost:8080/signup?email=reggie@google.com&userId=reggie&password=password123
@@ -54,7 +51,7 @@ class AuthenticationController {
         return new Response(false, signUpfail);
     }
 
-    @RequestMapping(Mappings.CONNECT)
+    @PostMapping(Mappings.CONNECT)
     @ResponseBody
         // Example url: http://localhost:8080/connect?sourceID=1&targetID=2
     Response connect(@RequestParam("sourceID") String sourceUUID,
@@ -67,7 +64,7 @@ class AuthenticationController {
         return new Response(false, "Error connecting users");
     }
 
-    @RequestMapping(Mappings.USERS)
+    @GetMapping(Mappings.USERS)
     @ResponseBody
         // Example url: http://localhost:8080/users
     Response logAllUsers() {
